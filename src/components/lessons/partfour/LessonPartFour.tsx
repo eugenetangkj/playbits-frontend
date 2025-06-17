@@ -4,21 +4,22 @@ import { Lesson } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TEMP_GAME_CARDS } from "@/app/constants/TempConstants";
-import { GamecardBoard } from "./GamecardBoard";
+import { TEMP_QUESTIONS } from "@/app/constants/TempConstants";
+import FillInTheBlankGame from "./FillInTheBlankGame";
+import { FillInTheBlankQuestion } from "./FillInTheBlankQuestion";
 
 /**
-This component represents part 3 of lesson flow, which is about flip cards.
+This component represents part 4 of lesson flow, which is about drag and drop questions
 */
-interface LessonPartThreeProps {
+interface LessonPartFourProps {
     lesson: Lesson
     setCurrentStage: React.Dispatch<React.SetStateAction<number>>,
 }
 
 
-export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartThreeProps) {
+export default function LessonPartFour({ lesson, setCurrentStage }: LessonPartFourProps) {
 
-    const fetchGamecardsIsLoading = false
+    const fetchQuestionsIsLoading = false
 
     const navigateToPrevious = () => {
         setCurrentStage(prev => {
@@ -27,18 +28,18 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
         });
     }
 
-    const allGameCards = TEMP_GAME_CARDS
+    const allQuestions = TEMP_QUESTIONS
 
     return (
-        fetchGamecardsIsLoading
+        fetchQuestionsIsLoading
         ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-32 mb-8'> 
             <Skeleton className='h-[30px] w-[240px]' />
             <Skeleton className='h-[50px] w-[200px] self-center' />
-            <Skeleton className='h-[300px] w-[300px] self-center' />
+            <Skeleton className='h-[50px] w-[300px] self-center' />
           </div>
         : false //poll?.id.length === 0 || poll === undefined || useUserProfileError || getPollError
         ? <div className="custom-padding">
-                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the flash cards.</p>
+                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the questions.</p>
           </div>
         : (
             <div className='flex flex-col justify-center space-y-8 custom-padding'>
@@ -49,15 +50,29 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
 
 
                 {/* Title */}
-                <h2 className='text-h2-heading self-center text-center !font-alkalmi'>Find the Right Pair</h2>
+                <h2 className='text-h2-heading self-center text-center !font-alkalmi'>Fill in the Blank</h2>
 
 
-                {/* Game board */}
-                <GamecardBoard cards={ allGameCards } />
+                {/* Game */}
+                <FillInTheBlankQuestion question={ TEMP_QUESTIONS[0] } />
 
+
+
+
+
+
+     
       
+                
+                
+                
+                
+                
+                
+                
+                
                 {/* Navigation */}
-                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(3)}>
+                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(4)}>
                     <p className='pt-2 !px-8'>Next</p>
                 </Button>
 

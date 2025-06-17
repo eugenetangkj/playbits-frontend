@@ -6,6 +6,7 @@ import { useState } from "react"
 import LessonPartOne from "./partone/LessonPartOne"
 import LessonPartTwo from "./parttwo/LessonPartTwo"
 import LessonPartThree from "./partthree/LessonPartThree"
+import LessonPartFour from "./partfour/LessonPartFour"
 
 interface DynamicLessonFlowBodyProps {
     lesson: Lesson,
@@ -31,6 +32,9 @@ export default function DynamicLessonFlowBody({ lesson, numberOfQuestions}: Dyna
     } else if (currentStage == 2) {
         //CASE 3: Flip card game
         return <LessonPartThree lesson={ lesson } setCurrentStage={ setCurrentStage } />
+    } else if (currentStage == 3) {
+        //CASE 4: Drag and drop
+        return <LessonPartFour lesson={ lesson } setCurrentStage={ setCurrentStage } />
     }
     else {
         //TODO: Other cases
