@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TEMP_QUESTIONS } from "@/app/constants/TempConstants";
 import FillInTheBlankGame from "./FillInTheBlankGame";
-import { FillInTheBlankQuestion } from "./FillInTheBlankQuestion";
 
 /**
 This component represents part 4 of lesson flow, which is about drag and drop questions
@@ -54,27 +53,9 @@ export default function LessonPartFour({ lesson, setCurrentStage }: LessonPartFo
 
 
                 {/* Game */}
-                <FillInTheBlankQuestion question={ TEMP_QUESTIONS[0] } />
-
-
-
-
-
-
-     
-      
-                
-                
-                
-                
-                
-                
-                
-                
-                {/* Navigation */}
-                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(4)}>
-                    <p className='pt-2 !px-8'>Next</p>
-                </Button>
+                <div className='self-center w-3/4'>
+                    <FillInTheBlankGame questions={ allQuestions } />
+                </div>
 
             </div>
         )

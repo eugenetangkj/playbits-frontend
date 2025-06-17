@@ -26,5 +26,5 @@ export interface Question {
     lesson_id: string,
     question: string,
     options: string[],
-    answer: string[]
+    answer: string
 }

@@ -15,30 +15,45 @@ import { Question } from '@/app/types/Types';
 
 interface FillInTheBlankQuestionProps {
     question: Question
+    setCurrentQuestionIndex: React.Dispatch<React.SetStateAction<number>>,
 }
 
 
+const splitQuestionText = (text: string): [string, string] => {
+    const parts = text.split("________"); //Assume using ____ to spot
+    return [parts[0] || "", parts[1] || ""];
+};
 
 
-export const FillInTheBlankQuestion = ({ question }: FillInTheBlankQuestionProps) => {
+
+
+
+export const FillInTheBlankQuestion = ({
+  question,
+  setCurrentQuestionIndex,
+}: FillInTheBlankQuestionProps) => {
   const [droppedValue, setDroppedValue] = useState<string | null>(null);
+
+  const parts = splitQuestionText(question.question);
 
   const handleDragEnd = (event: any) => {
     const { over, active } = event;
-    if (over?.id === 'blank') {
+    if (over?.id === "blank") {
       setDroppedValue(active.id);
     }
   };
 
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      {/* Sentence */}
-      <p className="text-lg font-medium">
-        The <DropZone id="blank" value={droppedValue} /> is the largest planet.
+      {/* Sentence with dynamic blank */}
+      <p className="text-h2-heading text-center">
+        {parts[0]}
+        <DropZone id="blank" value={droppedValue} />
+        {parts[1]}
       </p>
 
       {/* Options */}
-      <div className="flex gap-4 mt-4">
+      <div className="flex gap-4 mt-4 flex-wrap justify-center">
         {question.options.map((opt) => (
           <DraggableOption key={opt} id={opt} label={opt} />
         ))}
@@ -47,16 +62,16 @@ export const FillInTheBlankQuestion = ({ question }: FillInTheBlankQuestionProps
       {/* Check Button */}
       <button
         onClick={() => {
-          if (droppedValue === question.answer[0]) {
-            toast("Correct!", { description: "Well done!" });
-            // advance to next question here
+    
+          if (droppedValue == question.answer) {
+            toast("✅ Correct!", { description: "Well done!", descriptionClassName: 'text-paragraph' });
+            setTimeout(() => setCurrentQuestionIndex((prev) => prev + 1), 1000);
+            setDroppedValue(null)
           } else {
-            toast("Oops!", { description: "Try again." });
+            toast("❌ Oops!", { description: "Try again.", descriptionClassName: 'text-paragraph' });
           }
         }}
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded"
-      >
-        Check
+        className="green-button !px-12 !py-4"><p className='pt-2'>Check</p>
       </button>
     </DndContext>
   );

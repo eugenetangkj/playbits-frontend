@@ -19,7 +19,7 @@ export const DraggableOption = ({ id, label }: DraggableOptionProps) => {
       style={style}
       {...listeners}
       {...attributes}
-      className="px-3 py-2 bg-white border rounded shadow cursor-pointer"
+      className="text-lg lg:text-xl text-black rounded-lg bg-playbits-orange-300 hover:bg-[#E4B790] cursor-pointer py-6 px-7 border-b-4 border-playbits-orange-900"
     >
       {label}
     </div>
