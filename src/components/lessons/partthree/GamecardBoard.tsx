@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Gamecard } from "@/app/types/Types";
 import Image from "next/image";
 import { toast } from "sonner"
+import { RotateCcw } from "lucide-react";
 
 
 interface Props {
@@ -57,29 +58,45 @@ export  function GamecardBoard({ cards }: Props) {
     }
     };
 
-    return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-        {cards.map((card) => {
-        const isFlipped = flipped.includes(card.id) || matched.has(card.id);
+    //Handle reset
+    const handleResetCards = () => {
+        setFlipped([])
+        setMatched(new Set())
+    }
 
-        return (
-            <div
-                key={card.id}
-                onClick={() => handleCardClick(card.id)}
-                className={`cursor-pointer border rounded-xl p-4 text-center select-none flex flex-col items-center justify-center h-[250px] ${
-                    isFlipped ?
-                    "bg-white border-4 border-playbits-orange-900"
-                    : "bg-playbits-orange-900"
-                }`}
-                >
-                { isFlipped
-                ? <p className='text-h6-heading'>{ card.content }</p>
-                : <Image src='/assets/games/green-shape.svg' className='px-8 w-[160px]' alt='Green Shape' width={ 79 } height={ 90 } /> 
-                }
-            </div>
-        )
-        }
-    )}
+    return (
+    <div className='flex flex-col items-center space-y-4'>
+
+        {/* Retry */}
+        <button onClick={ handleResetCards } className='self-end cursor-pointer'>
+            <RotateCcw className='mr-8 d:mr-16' />
+        </button>
+
+   
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-y-4 gap-x-16">
+            {cards.map((card) => {
+            const isFlipped = flipped.includes(card.id) || matched.has(card.id);
+
+            return (
+                <div
+                    key={card.id}
+                    onClick={() => handleCardClick(card.id)}
+                    className={`cursor-pointer border rounded-xl p-4 text-center select-none flex flex-col items-center justify-center w-[200px] h-[250px] ${
+                        isFlipped ?
+                        "bg-white border-4 border-playbits-orange-900"
+                        : "bg-playbits-orange-900"
+                    }`}
+                    >
+                    { isFlipped
+                    ? <p className='text-h6-heading'>{ card.content }</p>
+                    : <Image src='/assets/games/green-shape.svg' className='px-8 w-[160px]' alt='Green Shape' width={ 79 } height={ 90 } /> 
+                    }
+                </div>
+                
+            )
+            }
+        )}
+        </div>
     </div>
     )
 }
