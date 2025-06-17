@@ -4,39 +4,22 @@ import { Lesson } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TEMP_FLASH_CARDS } from "@/app/constants/TempConstants";
+import { TEMP_FLASH_CARDS, TEMP_GAME_CARDS } from "@/app/constants/TempConstants";
 import { FlashcardArray } from "react-quizlet-flashcard";
+import { GamecardBoard } from "./GamecardBoard";
 
 /**
-This component represents part 2 of lesson flow, which is about flash cards.
+This component represents part 3 of lesson flow, which is about flip cards.
 */
-interface LessonPartTwoProps {
+interface LessonPartThreeProps {
     lesson: Lesson
     setCurrentStage: React.Dispatch<React.SetStateAction<number>>,
 }
 
 
-export default function LessonPartTwo({ lesson, setCurrentStage }: LessonPartTwoProps) {
+export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartThreeProps) {
 
-    //TODO: Fetch all given flash cards for the given lesson
-    const fetchCardsIsLoading = false
-    const flashCards = TEMP_FLASH_CARDS.map((card, index) => ({
-        id: index + 1,
-        frontHTML: (
-            <div className="flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
-            <h4 className="text-h4-heading">{card.front_content}</h4>
-            </div>
-        ),
-        backHTML: (
-            <div className="flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
-                <h4 className="text-h4-heading">{card.back_content}</h4>
-            </div>
-        ),
-        frontCardStyle: {},
-        borderRadius: "1rem",
-        className: "w-full",
-    }));
-
+    const fetchGamecardsIsLoading = false
 
     const navigateToPrevious = () => {
         setCurrentStage(prev => {
@@ -45,13 +28,18 @@ export default function LessonPartTwo({ lesson, setCurrentStage }: LessonPartTwo
         });
     }
 
+    const allGameCards = TEMP_GAME_CARDS
+
+
+
+
 
     return (
-        fetchCardsIsLoading
-        ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-16 mb-8'> 
+        fetchGamecardsIsLoading
+        ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-32 mb-8'> 
             <Skeleton className='h-[30px] w-[240px]' />
             <Skeleton className='h-[50px] w-[200px] self-center' />
-            <Skeleton className='h-[300px] w-[400px] self-center' />
+            <Skeleton className='h-[300px] w-[300px] self-center' />
           </div>
         : false //poll?.id.length === 0 || poll === undefined || useUserProfileError || getPollError
         ? <div className="custom-padding">
@@ -64,14 +52,20 @@ export default function LessonPartTwo({ lesson, setCurrentStage }: LessonPartTwo
                     <p className='text-paragraph'>Previous</p>
                 </button>
 
-                <h2 className='text-h2-heading self-center text-center !font-alkalmi'>Flashcard Time!</h2>
+
+                {/* Title */}
+                <h2 className='text-h2-heading self-center text-center !font-alkalmi'>Find the Right Pair</h2>
 
 
-                {/* Flash cards */}
-                <div className='flex flex-row justify-center items-center' >
-                    <FlashcardArray cards={ flashCards } cycle={ true } />
-                </div>
-                
+                {/* Game board */}
+                <GamecardBoard cards={ allGameCards } />
+
+      
+
+
+             
+
+
                 
                 {/* Navigation */}
                 <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(2)}>
