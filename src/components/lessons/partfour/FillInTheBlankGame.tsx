@@ -6,11 +6,12 @@ import { FillInTheBlankQuestion } from "./FillInTheBlankQuestion"
 
 
 interface FillInTheBlankGameProps {
-    questions: Question[]
+    questions: Question[],
+    setCurrentStage: React.Dispatch<React.SetStateAction<number>>,
 }
 
 
-export default function FillInTheBlankGame({ questions }: FillInTheBlankGameProps) {
+export default function FillInTheBlankGame({ questions, setCurrentStage }: FillInTheBlankGameProps) {
     
     //States
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -29,7 +30,13 @@ export default function FillInTheBlankGame({ questions }: FillInTheBlankGameProp
         <Progress value={ ((currentQuestionIndex + 1) / questions.length) * 100  } className='w-[200px] sm:w-[400px] md:w-[600px]' />
 
         {/* Current Question */}
-        <FillInTheBlankQuestion question={ questions[currentQuestionIndex] } setCurrentQuestionIndex={ setCurrentQuestionIndex } />
+        <FillInTheBlankQuestion 
+            question={ questions[currentQuestionIndex] }
+            currentQuestionIndex={ currentQuestionIndex }
+            setCurrentQuestionIndex={ setCurrentQuestionIndex }
+            setCurrentStage= { setCurrentStage }
+            totalNumberOfQuestions= { questions.length }
+        />
 
 
 

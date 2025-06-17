@@ -54,7 +54,7 @@ export default function LessonPartFour({ lesson, setCurrentStage }: LessonPartFo
 
                 {/* Game */}
                 <div className='self-center w-3/4'>
-                    <FillInTheBlankGame questions={ allQuestions } />
+                    <FillInTheBlankGame questions={ allQuestions } setCurrentStage={ setCurrentStage } />
                 </div>
 
             </div>
