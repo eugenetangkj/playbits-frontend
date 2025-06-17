@@ -1,5 +1,4 @@
 import LessonCards from "@/components/lessons/LessonCards";
-import Image from "next/image";
 
 /**
 This component represents the lessons page.
