@@ -1,15 +1,19 @@
 'use client';
 
+import { lessonCreate } from '@/data-fetchers/LessonFetchers';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
 export default function CreateLessonForm() {
   const [text, setText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-  const maxChars = 10000;
+  const maxChars = 2000;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit =  async (e: React.FormEvent) => {
     e.preventDefault();
+
+    //Set state
+    setIsSubmitting(true)
 
     if (text.trim() == '') {
         //Check for empty
@@ -18,36 +22,41 @@ export default function CreateLessonForm() {
                 descriptionClassName: "text-paragraph",
                 position: 'top-center',
         });
+        setIsSubmitting(false)
         return
     }
 
     try {
-        //Set state
         setIsSubmitting(true)
+        const lessonTitle = await lessonCreate(text)
 
-        //TODO, Make API call
-        console.log('Submitted:', text);
-
-
-
-        //Successful
-         toast("Successful! 😊", {
-                description: "You can view your lesson now.",
+   
+        if (lessonTitle.length !== 0) {
+            //Successful
+            toast("Successful! 😊", {
+                description: `You can view your lesson now: ${lessonTitle}`,
                 descriptionClassName: "text-paragraph",
-                position: 'top-center',
-        });
+                position: "top-center",
+            })
 
-        //Reset
-        setText('')
+            //Reset
+            setText('')
+        }
+        else {
+            // Something went wrong
+            toast("Something went wrong. 😥", {
+                    description: "Please try again later",
+                    descriptionClassName: "text-paragraph",
+                    position: 'top-center',
+            })
+        }
     } catch {
         // Something went wrong
         toast("Something went wrong. 😥", {
                 description: "Please try again later",
                 descriptionClassName: "text-paragraph",
                 position: 'top-center',
-        });
-
-
+        })
     } finally {
         setIsSubmitting(false)
     }
@@ -77,7 +86,7 @@ export default function CreateLessonForm() {
         className="!w-full green-button !py-1 md:!py-2"
         disabled={ isSubmitting }
       >
-        <p className='text-h4-heading pt-2 md:pt-4 !font-alkalmi'>Create!</p>
+        <p className='text-h4-heading pt-2 md:pt-4 !font-alkalmi'>{isSubmitting ? 'Creating...' : 'Create!'}</p>
       </button>
     </form>
   );
