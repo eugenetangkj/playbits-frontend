@@ -7,16 +7,16 @@ This component represents the hero in the home landing page.
 
 export default function Hero() {
     return (
-        <div className='relative flex flex-col justify-end items-center space-y-24 overflow-x-hidden min-h-screen pt-28 md:pt-36'>
+        <div className='relative flex flex-col justify-end items-center space-y-24 overflow-x-hidden pt-28 md:pt-36 overflow-y-hidden min-h-screen'>
             {/* Text */}
             <div className='flex flex-col items-center justify-center space-y-8 text-center px-8'>
                 <h1 className='text-h1-heading'>Learning through Playful Chunks</h1>
-                <h4 className='text-h5-heading w-full sm:w-3/4 2xl:w-1/2'>We turn traditional content into interactive, bite-sized flashcards, games, and quizzes — designed to make learning easier and more engaging for students who struggle with focus or reading long content.</h4>
+                <h6 className='text-h6-heading w-full sm:w-3/4 2xl:w-1/2'>We turn traditional content into interactive, bite-sized flashcards, games, and quizzes — designed to make learning easier and more engaging for students who struggle with focus or reading long content.</h6>
 
             </div>
 
             {/* Image */}
-            <Image src='/assets/homepage/phone.svg' className='mb-0 px-8 w-[520px] md:w-[680px]' alt='Playbits' width={ 736 } height={ 513 } />
+            <Image src='/assets/homepage/phone.svg' className='mb-0 px-8 w-[520px] md:w-[580px]' alt='Playbits' width={ 736 } height={ 513 } />
 
 
             {/* Decorative Images */}

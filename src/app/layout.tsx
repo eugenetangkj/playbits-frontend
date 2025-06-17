@@ -29,9 +29,13 @@ export default function RootLayout({
       <body
         className={`${alkalamiFont.variable} ${interFont.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+       <div className="min-h-screen flex flex-col">
+    <Navbar />
+    <main className="flex-1">
+      {children}
+    </main>
+    <Footer />
+  </div>
       </body>
     </html>
   );

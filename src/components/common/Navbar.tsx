@@ -28,7 +28,7 @@ export default function Navbar() {
                 {/* Navlinks */}
                 {
                     NAVBAR_LINKS.map((navbarLink, index) => (
-                        <Link key={ index } href={ navbarLink.path } className='text-h6-heading hover:text-gray-500 duration-200'>{ navbarLink.label }</Link>
+                        <Link key={ index } href={ navbarLink.path } className='text-paragraph-large hover:text-gray-500 duration-200'>{ navbarLink.label }</Link>
                     ))
                 }
                 {/* Button */}
@@ -56,7 +56,7 @@ export default function Navbar() {
                         {
                             NAVBAR_LINKS.map((navbarLink, index) => (
                                 <Link key={ index } href={ navbarLink.path }
-                                    className='text-h4-heading hover:text-gray-500 duration-200'
+                                    className='text-h6-heading hover:text-gray-500 duration-200'
                                     onClick={ () => setOpen(false) }
                                 >{ navbarLink.label }</Link>
                             ))
