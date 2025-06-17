@@ -1,7 +1,29 @@
 export interface Lesson {
-    _id: string,
+    id: string,
     title: string,
     summary: string,
     content: string,
     date_created: string
+}
+
+
+export interface Flashcard {
+    id: string,
+    lesson_id: string,
+    content: string[],
+}
+
+export interface Gamecard {
+    id: string,
+    lesson_id: string,
+    content: string,
+    pair_number: string,
+}
+
+export interface Question {
+    id: string,
+    lesson_id: string,
+    question: string,
+    options: string[],
+    answer: string[]
 }
