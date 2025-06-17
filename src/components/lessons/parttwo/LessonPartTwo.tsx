@@ -1,11 +1,15 @@
 "use client"
 
-import { Lesson } from "@/app/types/Types";
+import { Flashcard, Lesson } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TEMP_FLASH_CARDS } from "@/app/constants/TempConstants";
 import { FlashcardArray } from "react-quizlet-flashcard";
+import useSWR from 'swr'
+import { GET_ALL_FLASHCARDS_BY_LESSON_ID_SWR_HOOK } from "@/app/constants/SwrHooks";
+import { fetchFlashCardsByLessonId } from "@/data-fetchers/OtherFetchers";
+
 
 /**
 This component represents part 2 of lesson flow, which is about flash cards.
@@ -18,25 +22,8 @@ interface LessonPartTwoProps {
 
 export default function LessonPartTwo({ lesson, setCurrentStage }: LessonPartTwoProps) {
 
-    //TODO: Fetch all given flash cards for the given lesson
-    const fetchCardsIsLoading = false
-    const flashCards = TEMP_FLASH_CARDS.map((card, index) => ({
-        id: index + 1,
-        frontHTML: (
-            <div className="flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
-            <h4 className="text-h4-heading">{card.front_content}</h4>
-            </div>
-        ),
-        backHTML: (
-            <div className="flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
-                <h4 className="text-h4-heading">{card.back_content}</h4>
-            </div>
-        ),
-        frontCardStyle: {},
-        borderRadius: "1rem",
-        className: "w-full",
-    }));
-
+    //Fetch the flash cards associated with the current lesson
+    const { data, error, isLoading } = useSWR<Flashcard[]>(GET_ALL_FLASHCARDS_BY_LESSON_ID_SWR_HOOK, () => fetchFlashCardsByLessonId(lesson.id))
 
     const navigateToPrevious = () => {
         setCurrentStage(prev => {
@@ -47,15 +34,15 @@ export default function LessonPartTwo({ lesson, setCurrentStage }: LessonPartTwo
 
 
     return (
-        fetchCardsIsLoading
+        isLoading
         ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-16 mb-8'> 
             <Skeleton className='h-[30px] w-[240px]' />
             <Skeleton className='h-[50px] w-[200px] self-center' />
             <Skeleton className='h-[300px] w-[400px] self-center' />
           </div>
-        : false //poll?.id.length === 0 || poll === undefined || useUserProfileError || getPollError
+        : error || data == undefined || data.length == 0
         ? <div className="custom-padding">
-                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the flash cards.</p>
+                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the flash cards. 😥</p>
           </div>
         : (
             <div className='flex flex-col justify-center space-y-8 custom-padding'>
@@ -69,7 +56,24 @@ export default function LessonPartTwo({ lesson, setCurrentStage }: LessonPartTwo
 
                 {/* Flash cards */}
                 <div className='flex flex-row justify-center items-center' >
-                    <FlashcardArray cards={ flashCards } cycle={ true } />
+                    <FlashcardArray cards={ 
+                        data.map((card, index) => ({
+                        id: index + 1,
+                        frontHTML: (
+                            <div className="flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
+                            <h4 className="text-h5-heading">{card.front_content}</h4>
+                            </div>
+                        ),
+                        backHTML: (
+                            <div className="flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
+                                <h4 className="text-h5-heading">{card.back_content}</h4>
+                            </div>
+                        ),
+                        frontCardStyle: {},
+                        borderRadius: "1rem",
+                        className: "w-full",
+                    }))
+                    } cycle={ true } />
                 </div>
                 
                 

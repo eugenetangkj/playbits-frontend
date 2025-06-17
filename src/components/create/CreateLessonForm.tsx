@@ -77,6 +77,7 @@ export default function CreateLessonForm() {
         rows={8}
         className="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-playbits-blue-900 text-paragraph"
         placeholder="Type your response here..."
+        disabled={ isSubmitting }
       />
 
       <div className="text-sm text-gray-500">{text.length} / {maxChars}</div>

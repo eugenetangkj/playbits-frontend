@@ -88,7 +88,7 @@ export  function GamecardBoard({ cards, setHasCompleted }: GamecardBoardProps) {
                 <div
                     key={card.id}
                     onClick={() => handleCardClick(card.id)}
-                    className={`cursor-pointer border rounded-xl p-4 text-center select-none flex flex-col items-center justify-center w-[200px] h-[250px] ${
+                    className={`cursor-pointer border rounded-xl p-4 text-center select-none flex flex-col items-center justify-center w-[200px] sm:w-[250px] h-[300px] ${
                         isFlipped ?
                         "bg-white border-4 border-playbits-orange-900"
                         : "bg-playbits-orange-900"

@@ -1,12 +1,15 @@
 "use client"
 
-import { Lesson } from "@/app/types/Types";
+import { Gamecard, Lesson } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TEMP_GAME_CARDS } from "@/app/constants/TempConstants";
 import { GamecardBoard } from "./GamecardBoard";
 import { useState } from "react";
+import useSWR from "swr";
+import { GET_ALL_GAMECARDS_BY_LESSON_ID_SWR_HOOK } from "@/app/constants/SwrHooks";
+import { fetchGameCardsByLessonId } from "@/data-fetchers/OtherFetchers";
+import { shuffleArray } from "@/app/utils/Helpers";
 
 /**
 This component represents part 3 of lesson flow, which is about flip cards.
@@ -18,9 +21,10 @@ interface LessonPartThreeProps {
 
 
 export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartThreeProps) {
-    const [hasCompleted, setHasCompleted] = useState<boolean>(false)
 
-    const fetchGamecardsIsLoading = false
+    //Fetch the game cards associated with the current lesson
+    const { data, error, isLoading } = useSWR<Gamecard[]>(GET_ALL_GAMECARDS_BY_LESSON_ID_SWR_HOOK, () => fetchGameCardsByLessonId(lesson.id))
+    const [hasCompleted, setHasCompleted] = useState<boolean>(false)
 
     const navigateToPrevious = () => {
         setCurrentStage(prev => {
@@ -29,19 +33,19 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
         });
     }
 
-    //TODO: Must randomise the cards
-    const allGameCards = TEMP_GAME_CARDS
-
+   
     return (
-        fetchGamecardsIsLoading
+        isLoading
         ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-32 mb-8'> 
             <Skeleton className='h-[30px] w-[240px]' />
-            <Skeleton className='h-[50px] w-[200px] self-center' />
-            <Skeleton className='h-[300px] w-[300px] self-center' />
+            <div className='flex flex-row space-x-8 self-center'>
+                <Skeleton className='h-[300px] w-[200px]' />
+                <Skeleton className='h-[300px] w-[200px]' />
+            </div>
           </div>
-        : false //poll?.id.length === 0 || poll === undefined || useUserProfileError || getPollError
+        : error || data === undefined || data.length === 0
         ? <div className="custom-padding">
-                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the flash cards.</p>
+                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the game cards. 😥</p>
           </div>
         : (
             <div className='flex flex-col justify-center space-y-8 custom-padding'>
@@ -56,7 +60,7 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
 
 
                 {/* Game board */}
-                <GamecardBoard cards={ allGameCards } setHasCompleted={ setHasCompleted } />
+                <GamecardBoard cards={ shuffleArray(data) } setHasCompleted={ setHasCompleted } />
 
       
                 {/* Navigation */}

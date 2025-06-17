@@ -17,13 +17,13 @@ interface LessonPartOneProps {
 
 export default function LessonPartOne({ lesson, setCurrentStage }: LessonPartOneProps) {
     return (
-        <div className='flex flex-col justify-center space-y-8 custom-padding'>
+        <div className='flex flex-col justify-center space-y-16 md:space-y-20 xl:space-y-24 custom-padding h-full'>
             <Link href='/lessons' className='flex flex-row items-center space-x-2 hover:text-gray-500 duration-200'>
                 <MoveLeft className='' />
                 <p className='text-paragraph'>Back to All Lessons</p>
             </Link>
 
-            <h2 className='text-h2-heading self-center text-center !font-alkalmi'>{ lesson.title }</h2>
+            <h2 className='text-h2-heading self-center text-center !font-alkalmi !leading-snug'>{ lesson.title }</h2>
 
             <div className='flex flex-col space-y-4 self-center text-center'>
                 <h6 className='text-h6-heading !font-alkalmi'>Summary</h6>

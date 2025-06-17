@@ -10,14 +10,11 @@ import LessonPartFour from "./partfour/LessonPartFour"
 
 interface DynamicLessonFlowBodyProps {
     lesson: Lesson,
-    numberOfQuestions: number
 }
 
-export default function DynamicLessonFlowBody({ lesson, numberOfQuestions}: DynamicLessonFlowBodyProps) {
+export default function DynamicLessonFlowBody({ lesson }: DynamicLessonFlowBodyProps) {
     
-    //Constants
-    const totalNumberOfStages = 1 + 1 + 1 + numberOfQuestions  // 1 for initial summary, flashcards and 1 for game
-
+  
 
     //States
     const [currentStage, setCurrentStage] = useState<number>(0)

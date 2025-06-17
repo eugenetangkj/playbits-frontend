@@ -1,6 +1,5 @@
 "use client"
 
-import { TEMP_LESSONS } from "@/app/constants/TempConstants";
 import { Lesson } from "@/app/types/Types";
 import Link from "next/link";
 import useSWR from 'swr'
