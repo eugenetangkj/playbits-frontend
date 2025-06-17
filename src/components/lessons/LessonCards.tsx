@@ -21,14 +21,11 @@ export default function LessonCards() {
                     <Skeleton className='h-[150px] w-[250px] self-center' />
                     <Skeleton className='h-[150px] w-[250px] self-center' />
                 </div>
-                
-                
-               
                 : error
                 ? <div className='text-paragraph'>Oops! Something went wrong, please try again later.</div>
                 : (data?.length === 0)
                 ? <div className='text-paragraph'>There is no lesson. Feel free to create one. 😊</div>
-                : <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-8'>
+                : <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-8 mb-8'>
                     {
                         data?.map((lesson, index) => (
                             <Link className='flex flex-col space-y-2 items-center text-center white-card justify-center' key={ index } href={`lessons/${ lesson.id }`}>
