@@ -4,8 +4,7 @@ import { Lesson } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TEMP_FLASH_CARDS, TEMP_GAME_CARDS } from "@/app/constants/TempConstants";
-import { FlashcardArray } from "react-quizlet-flashcard";
+import { TEMP_GAME_CARDS } from "@/app/constants/TempConstants";
 import { GamecardBoard } from "./GamecardBoard";
 
 /**
@@ -29,10 +28,6 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
     }
 
     const allGameCards = TEMP_GAME_CARDS
-
-
-
-
 
     return (
         fetchGamecardsIsLoading
@@ -61,20 +56,11 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
                 <GamecardBoard cards={ allGameCards } />
 
       
-
-
-             
-
-
-                
                 {/* Navigation */}
                 <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(2)}>
                     <p className='pt-2 !px-8'>Next</p>
                 </Button>
 
-              
-             
-          
             </div>
         )
     )
