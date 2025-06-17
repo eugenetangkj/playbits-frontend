@@ -4,6 +4,7 @@ import { Lesson } from "@/app/types/Types"
 import { Skeleton } from "../ui/skeleton"
 import { useState } from "react"
 import LessonPartOne from "./partone/LessonPartOne"
+import LessonPartTwo from "./parttwo/LessonPartTwo"
 
 interface DynamicLessonFlowBodyProps {
     lesson: Lesson,
@@ -24,6 +25,9 @@ export default function DynamicLessonFlowBody({ lesson, numberOfFlashcards, numb
     if (currentStage == 0) {
         //CASE 1: Render introduction and summary
         return <LessonPartOne lesson={ lesson } setCurrentStage={ setCurrentStage } />
+    } else if (currentStage <= numberOfFlashcards) {
+        //CASE 2: Flashcards
+        return <LessonPartTwo lesson={ lesson } setCurrentStage={ setCurrentStage } />
     } else {
         //TODO: Other cases
         return <div>Hello</div>

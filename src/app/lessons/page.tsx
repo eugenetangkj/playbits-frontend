@@ -26,7 +26,7 @@ export default function ViewAllLessons() {
 
 
             {/* Image */}
-             <Image src='/assets/lessons/orange-shape.svg' className='px-8 w-[200px] sm:w-[240px] md:w-[300px] -mb-10 self-end' alt='Brown Shape' width={ 43 } height={ 32 } />
+            <Image src='/assets/lessons/orange-shape.svg' className='px-8 w-[200px] sm:w-[240px] md:w-[300px] -mb-10 self-end' alt='Brown Shape' width={ 43 } height={ 32 } />
 
 
         </div>
