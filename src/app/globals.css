@@ -140,7 +140,7 @@
 
 @layer utilities {
     .custom-padding {
-        @apply px-16
+        @apply px-8 md:px-16
     }
 
     .text-h1-heading {

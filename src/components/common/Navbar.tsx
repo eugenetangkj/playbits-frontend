@@ -19,7 +19,7 @@ export default function Navbar() {
 
             {/* Icon title */}
             <Link className='flex flex-row items-center space-x-4' href='/'>
-                <h6 className='text-h3-heading !font-alkalmi pt-2'>Playbits</h6>
+                <h6 className='text-h4-heading !font-alkalmi pt-2'>Playbits</h6>
             </Link>
 
 
