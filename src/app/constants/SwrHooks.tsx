@@ -1,0 +1,1 @@
+export const GET_ALL_LESSONS_SWR_HOOK = 'lessons/get-all'
