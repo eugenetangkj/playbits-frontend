@@ -1,4 +1,5 @@
 import LessonCards from "@/components/lessons/LessonCards";
+import Image from "next/image";
 
 /**
 This component represents the lessons page.
@@ -16,7 +17,10 @@ export default function ViewAllLessons() {
         <div className='flex flex-col space-y-16 pt-28 md:pt-36 custom-padding'>
             {/* Heading and subheading */}
             <div className='flex flex-col'>
-                <h2 className='text-h2-heading !font-alkalmi'>Lessons</h2>
+                <div className='flex flex-row items-center space-x-4'>
+                    <h2 className='text-h2-heading !font-alkalmi'>Lessons</h2>
+                    <Image src='/assets/lessons/orange-shape.svg' className='w-[60] sm:w-[60] md:w-[80] pb-8' alt='Orange Shape' width={ 170 } height={ 491 } />
+                </div>
                 <h6 className='text-h6-heading'>Browse through the lessons created with flashcards, games, and a quiz.</h6>
             </div>
 

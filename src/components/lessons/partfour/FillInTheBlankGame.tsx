@@ -18,12 +18,6 @@ export default function FillInTheBlankGame({ questions, setCurrentStage }: FillI
 
 
 
-
-  
-
-
-
-
   return (
     <div className='flex flex-col items-center space-y-16'>
         {/* Progress indicator */}

@@ -7,11 +7,12 @@ import { toast } from "sonner"
 import { RotateCcw } from "lucide-react";
 
 
-interface Props {
+interface GamecardBoardProps {
     cards: Gamecard[]; // assume already shuffled and duplicated pairs
+    setHasCompleted: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-export  function GamecardBoard({ cards }: Props) {
+export  function GamecardBoard({ cards, setHasCompleted }: GamecardBoardProps) {
     // Track which cards are flipped currently (by id)
     const [flipped, setFlipped] = useState<string[]>([]);
     // Track which cards are matched (by id)
@@ -43,8 +44,14 @@ export  function GamecardBoard({ cards }: Props) {
           descriptionClassName: 'text-paragraph',
         })
         setTimeout(() => {
+            if (matched.size == cards.length - 2) {
+                setHasCompleted(prev => { return ! prev });
+            }
             setMatched((prev) => new Set(prev).add(firstCardId).add(secondCardId));
             setFlipped([]);
+
+
+
         }, 1000); // 1 second delay to show matched cards
         } else {
         // Not matched - flip back after delay

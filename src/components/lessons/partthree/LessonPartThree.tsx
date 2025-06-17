@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TEMP_GAME_CARDS } from "@/app/constants/TempConstants";
 import { GamecardBoard } from "./GamecardBoard";
+import { useState } from "react";
 
 /**
 This component represents part 3 of lesson flow, which is about flip cards.
@@ -17,6 +18,7 @@ interface LessonPartThreeProps {
 
 
 export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartThreeProps) {
+    const [hasCompleted, setHasCompleted] = useState<boolean>(false)
 
     const fetchGamecardsIsLoading = false
 
@@ -27,6 +29,7 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
         });
     }
 
+    //TODO: Must randomise the cards
     const allGameCards = TEMP_GAME_CARDS
 
     return (
@@ -53,11 +56,11 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
 
 
                 {/* Game board */}
-                <GamecardBoard cards={ allGameCards } />
+                <GamecardBoard cards={ allGameCards } setHasCompleted={ setHasCompleted } />
 
       
                 {/* Navigation */}
-                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(3)}>
+                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(3)} disabled={ ! hasCompleted }>
                     <p className='pt-2 !px-8'>Next</p>
                 </Button>
 

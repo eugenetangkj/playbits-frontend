@@ -74,10 +74,10 @@ export default function CreateLessonForm() {
 
       <button
         type="submit"
-        className="!w-full green-button !py-2"
+        className="!w-full green-button !py-1 md:!py-2"
         disabled={ isSubmitting }
       >
-        <p className='text-h4-heading pt-4 !font-alkalmi'>Submit</p>
+        <p className='text-h4-heading pt-2 md:pt-4 !font-alkalmi'>Create!</p>
       </button>
     </form>
   );
