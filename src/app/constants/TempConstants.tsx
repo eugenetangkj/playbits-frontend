@@ -1,4 +1,4 @@
-import { Lesson } from "../types/Types";
+import { Flashcard, Lesson } from "../types/Types";
 
 export const TEMP_LESSONS: Lesson[] = [
     {
@@ -35,5 +35,27 @@ export const TEMP_LESSONS: Lesson[] = [
         summary: 'This is a summary.',
         content: 'This is the content.',
         date_created: '2025-06-17'
+    }
+]
+
+
+export const TEMP_FLASH_CARDS: Flashcard[] = [
+    {
+        id: '1',
+        lesson_id: '1',
+        front_content: "This is a front flashcard statement. Just an example",
+        back_content: "This is a back flashcard statement.",
+    },
+    {
+        id: '2',
+        lesson_id: '1',
+        front_content: "This is a front flashcard statement. Just an example",
+        back_content: "This is a back flashcard statement.",
+    },
+    {
+        id: '3',
+        lesson_id: '1',
+        front_content: "This is a front flashcard statement. Just an example",
+        back_content: "This is a back flashcard statement.",
     }
 ]

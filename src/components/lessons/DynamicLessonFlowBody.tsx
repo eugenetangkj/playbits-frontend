@@ -8,14 +8,13 @@ import LessonPartTwo from "./parttwo/LessonPartTwo"
 
 interface DynamicLessonFlowBodyProps {
     lesson: Lesson,
-    numberOfFlashcards: number,
     numberOfQuestions: number
 }
 
-export default function DynamicLessonFlowBody({ lesson, numberOfFlashcards, numberOfQuestions}: DynamicLessonFlowBodyProps) {
+export default function DynamicLessonFlowBody({ lesson, numberOfQuestions}: DynamicLessonFlowBodyProps) {
     
     //Constants
-    const totalNumberOfStages = 1 + numberOfFlashcards + 1 + numberOfQuestions  // 1 for initial summary and 1 for game
+    const totalNumberOfStages = 1 + 1 + 1 + numberOfQuestions  // 1 for initial summary, flashcards and 1 for game
 
 
     //States
@@ -25,7 +24,7 @@ export default function DynamicLessonFlowBody({ lesson, numberOfFlashcards, numb
     if (currentStage == 0) {
         //CASE 1: Render introduction and summary
         return <LessonPartOne lesson={ lesson } setCurrentStage={ setCurrentStage } />
-    } else if (currentStage <= numberOfFlashcards) {
+    } else if (currentStage <= 1) {
         //CASE 2: Flashcards
         return <LessonPartTwo lesson={ lesson } setCurrentStage={ setCurrentStage } />
     } else {

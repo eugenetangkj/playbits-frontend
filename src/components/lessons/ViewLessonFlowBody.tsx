@@ -21,7 +21,6 @@ export default function ViewLessonFlowBody({ lessonId }: LessonPartOneProps) {
 
 
     //Hard-coded constants
-    const numberOfFlashcards = 2
     const numberOfQuestions = 5
     const lesson = TEMP_LESSONS[0]
     
@@ -38,7 +37,7 @@ export default function ViewLessonFlowBody({ lessonId }: LessonPartOneProps) {
                 <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the lesson.</p>
           </div>
         : <div className='pt-28 md:pt-36'>
-            <DynamicLessonFlowBody lesson={ lesson } numberOfFlashcards={ numberOfFlashcards } numberOfQuestions={ numberOfQuestions } />
+            <DynamicLessonFlowBody lesson={ lesson } numberOfQuestions={ numberOfQuestions } />
           </div>
     );
 

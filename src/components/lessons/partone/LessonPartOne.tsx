@@ -31,7 +31,7 @@ export default function LessonPartOne({ lesson, setCurrentStage }: LessonPartOne
             </div>
 
 
-            <Button className='green-button w-fit self-center' onClick={ () => setCurrentStage(1)}>
+            <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(1)}>
                 <p className='pt-2 !px-8'>Let&apos;s go!</p>
             </Button>
           

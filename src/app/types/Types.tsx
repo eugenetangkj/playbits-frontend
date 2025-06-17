@@ -10,7 +10,8 @@ export interface Lesson {
 export interface Flashcard {
     id: string,
     lesson_id: string,
-    content: string[],
+    front_content: string,
+    back_content: string,
 }
 
 export interface Gamecard {
