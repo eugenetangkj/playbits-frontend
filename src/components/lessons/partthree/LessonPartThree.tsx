@@ -35,7 +35,7 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
 
    
     return (
-        !isLoading
+        isLoading
         ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-32 mb-8'> 
             <Skeleton className='h-[30px] w-[240px]' />
             <div className='flex flex-row space-x-8 self-center'>
