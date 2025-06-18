@@ -8,6 +8,13 @@ Simply visit [https://playbitss-frontend.vercel.app/](https://playbitss-frontend
 You can create new lesson flows and try them out straight away. 😄
 
 
+<div align="center">
+    <img src="public/assets/common/cover-image.png" width="full" />
+</div>
+
+
+
+
 ### Running Locally
 To run Playbits locally, you will need to set up the frontend repo (this repo) and the [backend repository](https://github.com/potty10/playbits-backend). Once both have been set up, you are ready to use the application!
 
@@ -42,18 +49,12 @@ npm run dev
 git clone https://github.com/potty10/playbits-backend.git
 ```
 
-2. Cd to the above folder. In the directory, run `npm install`.
-```
-npm install
-```
-
-
-3. Install necessary Python dependencies.
+2. Cd to the above folder. In the directory, install the necessary Python dependencies.
 ```
 pip install -r requirements.txt
 ```
 
-4. Create a .env file in the root repository with the following information. To create the MongoDB URI, you can head to MongoDB Atlas (Cloud) to set up your own cluster and obtain the URI, or use `mongodb://localhost:27017`.
+3. Create a .env file in the root repository with the following information. To create the MongoDB URI, you can head to MongoDB Atlas (Cloud) to set up your own cluster and obtain the URI, or use `mongodb://localhost:27017`.
 ```
 OPENAI_API_KEY = <Your OpenAI key here>
 MONGO_URI=<Your MongoDB URI here> 
@@ -61,7 +62,7 @@ DATABASE_NAME=db_local
 ```
 
 
-5. Ensure that you have Docker downloaded.
+4. Ensure that you have Docker downloaded.
 
 
 
