@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Playbits
 
-## Getting Started
+Playbits transforms traditional text-based educational material into an engaging, accessible, and bite-sized revision flow designed for children with focus-related disabilities such as ADHD. It supports effective revision by promoting active recall, reducing cognitive load, and sustaining attention through a sequence of interactive activities - flashcards, flip-and-match games, and fill-in-the-blank challenges.
 
-First, run the development server:
+### Visit Us
+Simply visit [https://playbitss-frontend.vercel.app/](https://playbitss-frontend.vercel.app/) to try out our app!
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+You can create new lesson flows and try them out straight away. 😄
+
+
+### Running Locally
+To run Playbits locally, you will need to set up the frontend repo (this repo) and the [backend repository](https://github.com/potty10/playbits-backend). Once both have been set up, you are ready to use the application!
+
+#### Set up frontend repo
+1. Git clone the repository to your desired folder.
+```
+git clone https://github.com/eugenetangkj/playbits-frontend.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Cd to the above folder. In the directory, run `npm install`.
+```
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a .env file in the root repository with the following information.
+```
+NEXT_PUBLIC_API_BASE_URL = 'http://localhost:8000'
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Start the website on your local server
+```
+npm run dev
+```
 
-## Learn More
+5. Visit the website in your browser by typing http://localhost:8000 into the URL. 😄
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### Setup backend repo
+1. Git clone  [backend repository](https://github.com/potty10/playbits-backend) to your desired folder.
+```
+git clone https://github.com/potty10/playbits-backend.git
+```
 
-## Deploy on Vercel
+2. Cd to the above folder. In the directory, run `npm install`.
+```
+npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Install necessary Python dependencies.
+```
+pip install -r requirements.txt
+```
+
+4. Create a .env file in the root repository with the following information. To create the MongoDB URI, you can head to MongoDB Atlas (Cloud) to set up your own cluster and obtain the URI, or use `mongodb://localhost:27017`.
+```
+OPENAI_API_KEY = <Your OpenAI key here>
+MONGO_URI=<Your MongoDB URI here> 
+DATABASE_NAME=db_local
+```
+
+
+5. Ensure that you have Docker downloaded.
+
+
+
+5. Run MongoDB as container.
+```
+docker pull mongodb/mongodb-community-server:latest
+docker run --name mongodb -p 27017:27017 -d mongodb mongodb-community-server:latest
+```
+
+6. Start running API via FastAPI
+```
+uvicorn main:app --reload
+```
