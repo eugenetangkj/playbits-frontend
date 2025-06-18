@@ -31,6 +31,7 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
             const newStage = prev - 1;
             return newStage;
         });
+        console.log(hasCompleted)
     }
 
    
