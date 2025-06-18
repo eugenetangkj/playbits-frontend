@@ -28,7 +28,6 @@ export default function FillInTheBlankGame({ questions, setCurrentStage }: FillI
             question={ questions[currentQuestionIndex] }
             currentQuestionIndex={ currentQuestionIndex }
             setCurrentQuestionIndex={ setCurrentQuestionIndex }
-            setCurrentStage= { setCurrentStage }
             totalNumberOfQuestions= { questions.length }
         />
 
