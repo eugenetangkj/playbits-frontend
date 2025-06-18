@@ -1,6 +1,5 @@
 "use client"
 
-import { TEMP_LESSONS } from "@/app/constants/TempConstants"
 import { Skeleton } from "../ui/skeleton"
 import DynamicLessonFlowBody from "./DynamicLessonFlowBody"
 import useSWR from "swr"

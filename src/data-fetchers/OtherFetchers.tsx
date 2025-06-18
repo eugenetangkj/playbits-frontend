@@ -15,6 +15,7 @@ export const fetchFlashCardsByLessonId = async (lessonId: string) : Promise<Flas
         const flashcards = convertFlashcardDocumentsToObjects(flashCardsData.data)
         return flashcards
     } catch (error) {
+        console.log(error)
         return []
     }
 }
@@ -29,6 +30,7 @@ export const fetchGameCardsByLessonId = async (lessonId: string) : Promise<Gamec
         const gamecards = convertGamecardDocumentsToObjects(gameCardsData.data)
         return gamecards
     } catch (error) {
+        console.log(error)
         return []
     }
 }
@@ -42,6 +44,7 @@ export const fetchQuestionsByLessonId = async (lessonId: string) : Promise<Quest
         const questions = convertQuestionDocumentsToObjects(questionsData.data)
         return questions
     } catch (error) {
+        console.log(error)
         return []
     }
 }

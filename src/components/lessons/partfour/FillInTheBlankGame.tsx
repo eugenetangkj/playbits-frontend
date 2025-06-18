@@ -7,11 +7,10 @@ import { FillInTheBlankQuestion } from "./FillInTheBlankQuestion"
 
 interface FillInTheBlankGameProps {
     questions: Question[],
-    setCurrentStage: React.Dispatch<React.SetStateAction<number>>,
 }
 
 
-export default function FillInTheBlankGame({ questions, setCurrentStage }: FillInTheBlankGameProps) {
+export default function FillInTheBlankGame({ questions }: FillInTheBlankGameProps) {
     
     //States
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)

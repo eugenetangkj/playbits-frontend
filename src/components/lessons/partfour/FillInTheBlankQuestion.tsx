@@ -117,7 +117,7 @@ export const FillInTheBlankQuestion = ({
             <AlertDialogDescription className="text-paragraph">
                 <div className='flex flex-col space-y-2 items-center'>
                     <Image src='/assets/lessons/pink-shape.svg' className='w-[80] sm:w-[100] md:w-[120]' alt='Pink Celebratory Shape' width={ 131 } height={ 121 } />
-                    <div>Well done. You've completed all the activities in this lesson.</div>
+                    <div>Well done. You&apos;ve completed all the activities in this lesson.</div>
                 </div>
             </AlertDialogDescription>
             </AlertDialogHeader>

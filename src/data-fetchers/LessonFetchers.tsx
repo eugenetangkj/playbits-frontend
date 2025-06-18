@@ -15,6 +15,7 @@ export const lessonsGetMany = async () : Promise<Lesson[]> => {
         const lessons = convertLessonDocumentsToObjects(lessonsData.data)
         return lessons
     } catch (error) {
+        console.log(error)
         return []
     }
 }
