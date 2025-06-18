@@ -21,7 +21,7 @@ export default function ViewAllLessons() {
                     <h2 className='text-h2-heading !font-alkalmi'>Lessons</h2>
                     <Image src='/assets/lessons/orange-shape.svg' className='w-[60] sm:w-[60] md:w-[80] pb-8' alt='Orange Shape' width={ 170 } height={ 491 } />
                 </div>
-                <h6 className='text-h6-heading'>Browse through the lessons created with flashcards, games, and a quiz.</h6>
+                <h6 className='text-h6-heading'>Explore our lessons, each packed with interactive flashcards, flip-and-match games, and fill-in-the-blank challenges designed to make learning fun and effective.</h6>
             </div>
 
             {/* Lesson cards */}

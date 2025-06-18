@@ -21,7 +21,7 @@ export default function CreateLesson() {
                     <Image src='/assets/lessons/blue-shape.svg' className='w-[60] sm:w-[60] md:w-[80] pb-8' alt='Blue Shape with Flashcards' width={ 135 } height={ 102 } />
                 </div>
                
-                <h6 className='text-h6-heading'>Paste your educational content and we&apos;ll turn it into a fun learning flow with flashcards, games, and a quiz — perfect for short attention spans!</h6>
+                <h6 className='text-h6-heading'>Paste your educational content and we&apos;ll turn it into a fun learning flow with interactive flashcards, flip-and-match games, and fill-in-the-blank challenges — perfect for short attention spans!</h6>
             </div>
 
             {/* Create form */}

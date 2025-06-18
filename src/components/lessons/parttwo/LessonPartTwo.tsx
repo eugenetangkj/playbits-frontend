@@ -4,7 +4,6 @@ import { Flashcard, Lesson } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TEMP_FLASH_CARDS } from "@/app/constants/TempConstants";
 import { FlashcardArray } from "react-quizlet-flashcard";
 import useSWR from 'swr'
 import { GET_ALL_FLASHCARDS_BY_LESSON_ID_SWR_HOOK } from "@/app/constants/SwrHooks";

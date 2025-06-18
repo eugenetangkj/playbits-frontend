@@ -11,7 +11,7 @@ export default function Hero() {
             {/* Text */}
             <div className='flex flex-col items-center justify-center space-y-8 text-center px-8'>
                 <h1 className='text-h1-heading'>Learning through Playful Chunks</h1>
-                <h6 className='text-h6-heading w-full sm:w-3/4 2xl:w-1/2'>We turn traditional content into interactive, bite-sized flashcards, games, and quizzes — designed to make learning easier and more engaging for students who struggle with focus or reading long content.</h6>
+                <h6 className='text-h6-heading w-full sm:w-3/4 2xl:w-1/2'>We turn traditional educational content into interactive, bite-sized flashcards, games, and quizzes — designed to make revision easier and more engaging for students who struggle with focus or reading long content.</h6>
 
             </div>
 
