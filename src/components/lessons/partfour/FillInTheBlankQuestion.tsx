@@ -28,8 +28,15 @@ interface FillInTheBlankQuestionProps {
 
 
 const splitQuestionText = (text: string): [string, string] => {
-    const parts = text.split("________"); //Assume using ____ to spot
-    return [parts[0] || "", parts[1] || ""];
+  const match = text.match(/_+/); // Find any sequence of underscores
+
+  if (!match || match[0].length < 5) {
+    // If no underscores or less than 5 in a row, return full string in first part
+    return [text, ""];
+  }
+
+  const parts = text.split(/_+/);
+  return [parts[0] || "", parts[1] || ""];
 };
 
 
@@ -58,6 +65,8 @@ export const FillInTheBlankQuestion = ({
       setDroppedValue(active.id);
     }
   };
+
+  console.log(parts)
 
   return (
     <DndContext collisionDetection={pointerWithin} onDragEnd={handleDragEnd}>
@@ -116,7 +125,7 @@ export const FillInTheBlankQuestion = ({
             </AlertDialogHeader>
             <AlertDialogFooter>
             <AlertDialogAction className='green-button' onClick={() => router.push('/lessons')}>
-                <p className='mt-2'>Back to Lessons</p>
+                <div className='mt-2'>Back to Lessons</div>
             </AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>

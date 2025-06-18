@@ -1,11 +1,13 @@
 "use client"
 
-import { Lesson } from "@/app/types/Types";
+import { Lesson, Question } from "@/app/types/Types";
 import { MoveLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TEMP_QUESTIONS } from "@/app/constants/TempConstants";
+import { shuffleArray } from "@/app/utils/Helpers";
 import FillInTheBlankGame from "./FillInTheBlankGame";
+import useSWR from "swr";
+import { GET_ALL_QUESTIONS_BY_LESSON_ID_SWR_HOOK } from "@/app/constants/SwrHooks";
+import { fetchQuestionsByLessonId } from "@/data-fetchers/OtherFetchers";
 
 /**
 This component represents part 4 of lesson flow, which is about drag and drop questions
@@ -18,7 +20,11 @@ interface LessonPartFourProps {
 
 export default function LessonPartFour({ lesson, setCurrentStage }: LessonPartFourProps) {
 
-    const fetchQuestionsIsLoading = false
+    //Fetch associated questions
+    const { data, error, isLoading } = useSWR<Question[]>(GET_ALL_QUESTIONS_BY_LESSON_ID_SWR_HOOK, () => fetchQuestionsByLessonId(lesson.id))
+
+
+
 
     const navigateToPrevious = () => {
         setCurrentStage(prev => {
@@ -27,18 +33,18 @@ export default function LessonPartFour({ lesson, setCurrentStage }: LessonPartFo
         });
     }
 
-    const allQuestions = TEMP_QUESTIONS
+
 
     return (
-        fetchQuestionsIsLoading
+        isLoading
         ? <div className='flex flex-col space-y-8 px-6 md:px-12 mt-32 mb-8'> 
             <Skeleton className='h-[30px] w-[240px]' />
             <Skeleton className='h-[50px] w-[200px] self-center' />
             <Skeleton className='h-[50px] w-[300px] self-center' />
           </div>
-        : false //poll?.id.length === 0 || poll === undefined || useUserProfileError || getPollError
+        : error || data === undefined || data.length == 0
         ? <div className="custom-padding">
-                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the questions.</p>
+                <p className='text-paragraph mt-32'>Something went wrong. We could not fetch the questions. 😥</p>
           </div>
         : (
             <div className='flex flex-col justify-center space-y-8 custom-padding'>
@@ -54,7 +60,7 @@ export default function LessonPartFour({ lesson, setCurrentStage }: LessonPartFo
 
                 {/* Game */}
                 <div className='self-center w-3/4'>
-                    <FillInTheBlankGame questions={ allQuestions } setCurrentStage={ setCurrentStage } />
+                    <FillInTheBlankGame questions={ shuffleArray(data) } setCurrentStage={ setCurrentStage } />
                 </div>
 
             </div>
