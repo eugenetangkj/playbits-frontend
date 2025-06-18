@@ -7,7 +7,8 @@ import { Toaster } from "sonner";
 
 const alkalamiFont = Alkalami({
     variable: "--font-alkalmi",
-    weight: "400"
+    weight: "400",
+    subsets: ["latin"]
 });
 
 const interFont = Inter({
