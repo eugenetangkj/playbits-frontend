@@ -9,7 +9,7 @@ You can create new lesson flows and try them out straight away. 😄
 
 
 <div align="center">
-    <img src="public/assets/common/cover-image.png" width="full" />
+    <img src="public/assets/common/coverpage.svg" width="full" />
 </div>
 
 
@@ -56,7 +56,7 @@ pip install -r requirements.txt
 
 3. Create a .env file in the root repository with the following information. To create the MongoDB URI, you can head to MongoDB Atlas (Cloud) to set up your own cluster and obtain the URI, or use `mongodb://localhost:27017`.
 ```
-OPENAI_API_KEY = <Your OpenAI key here>
+OPENAI_API_KEY=<Your OpenAI key here>
 MONGO_URI=<Your MongoDB URI here> 
 DATABASE_NAME=db_local
 ```
@@ -72,7 +72,7 @@ docker pull mongodb/mongodb-community-server:latest
 docker run --name mongodb -p 27017:27017 -d mongodb mongodb-community-server:latest
 ```
 
-6. Start running API via FastAPI
+6. Start running API via FastAPI.
 ```
 uvicorn main:app --reload
 ```
