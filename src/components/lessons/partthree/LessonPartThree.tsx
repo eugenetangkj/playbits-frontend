@@ -64,7 +64,7 @@ export default function LessonPartThree({ lesson, setCurrentStage }: LessonPartT
 
       
                 {/* Navigation */}
-                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(3)} disabled={ ! hasCompleted }>
+                <Button className='green-button w-fit self-center mb-8' onClick={ () => setCurrentStage(3)}>
                     <p className='pt-2 !px-8'>Next</p>
                 </Button>
 
